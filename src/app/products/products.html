@@ -1,0 +1,13 @@
+<p>{{ title }}</p>
+<div class="list-products">
+<ul>
+    <li *ngFor="let p of products">{{p.productName}} - Rp. {{p.productPrice}} <button (click)="detailProduct(p.productId)">Detail</button></li>
+</ul>
+<ul *ngIf="product">
+    <li>{{product.productName}}</li>
+    <li>{{product.productDescription}}</li>
+    <li>{{product.productPrice}}</li>
+    <li>{{product.productCount}}</li>
+    <li>{{product.categoryName}}</li>
+</ul>
+</div>
