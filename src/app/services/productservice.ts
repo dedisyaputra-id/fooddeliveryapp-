@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-
+import { Environtment } from '../../environtments/environtment';
 export interface Product{
   productId: string;
   productName: string;
@@ -16,8 +16,8 @@ export interface Product{
 })
 
 export class Productservice {
-  private baseUrl = "https://localhost:7218/api/Product/Get";
-  private getProductById = "https://localhost:7218/api/Product/GetById";
+  private baseUrl = `${Environtment.apiUrl}/Product/Get`;
+  private getProductById = `${Environtment.apiUrl}/Product/GetById`;
   constructor(private http: HttpClient){};
 
   getAll(): Observable<any>{
