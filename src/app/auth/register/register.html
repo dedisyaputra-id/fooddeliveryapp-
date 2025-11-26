@@ -1,0 +1,94 @@
+<style>
+  .ng-valid[required], .ng-valid.required  {
+  border-left: 5px solid #42A948; /* green */
+}
+.ng-touched .ng-invalid:not(form)  {
+  border-left: 5px solid #a94442; /* red */
+}
+</style>
+<h2 class="title mb-2">Register</h2>
+<form #f="ngForm">
+
+  <div class="form-group mb-2">
+    <label>Nama Depan</label>
+    <input type="text" name="namaDepan" [(ngModel)]="namaDepan" class="form-control" required #namaDepanRef = "ngModel" placeholder="nama depan">
+    @if (namaDepanRef.invalid && (namaDepanRef.dirty || namaDepanRef.touched)) {
+    <div class="alert mt-1 p-0">
+      @if (namaDepanRef.hasError("required")) {
+        <div class="text-danger small">
+          Nama Depan tidak boleh kosong!
+        </div>
+      }
+    </div>
+  }
+  </div>
+  <div class="form-group mb-2">
+    <label>Nama Belakang</label>
+    <input type="text" name="namaBelakang" [(ngModel)]="namaBelakang" class="form-control" placeholder="nama belakang" #namaBelakangRef="ngModel" required>
+    @if(namaBelakangRef.invalid && (namaBelakangRef.dirty || namaBelakangRef.touched)){
+      <div class="alert mt-1 p-0">
+        @if(namaBelakangRef.hasError("required")){
+          <div class="text-danger small">
+            Nama Belakang tidak boleh kosong!
+          </div>
+        }
+      </div>
+    }
+  </div>
+
+  <div class="form-group mb-2">
+    <label>Email</label>
+    <input type="email" name="email" [(ngModel)]="email" class="form-control" placeholder="email" #emailRef = "ngModel" required>
+    @if(emailRef.invalid && (emailRef.dirty || emailRef.touched)){
+      <div class="alert mt-1 p-0">
+        @if(emailRef.hasError("required")){
+          <div class="text-danger small">
+            Email tidak boleh kosong
+          </div>
+        }
+      </div>
+    }
+  </div>
+
+  <div class="form-group mb-2">
+    <label>Password</label>
+    <input type="password" name="password"  class="form-control" [(ngModel)] = "password" #passwordRef = "ngModel" minlength="8" required placeholder="********">
+    @if(passwordRef.invalid && (passwordRef.dirty || passwordRef.touched)){
+      <div class="alert mt-1 p-0">
+        @if(passwordRef.hasError("required")){
+          <div class="text-danger small">
+            Password tidak boleh kosong!
+          </div>
+        }
+        @if(passwordRef.hasError("minlength")){
+          <div class="text-danger small">
+              Password minimal 8 karakter
+          </div>
+        }
+      </div>
+    }
+  </div>
+
+  <div class="form-group mb-2">
+    <label>Konfirmasi Password</label>
+    <input type="password" name="confirmPassword" [(ngModel)]="confirmPassword" class="form-control" required #confirmPasswordRef="ngModel" placeholder="********">
+    @if(confirmPasswordRef.invalid && (confirmPasswordRef.dirty || confirmPasswordRef.touched)){
+      <div class="alert mt-1 p-0">
+        @if(confirmPasswordRef.hasError("required")){
+          <div class="text-danger small">
+            Konfirmasi password tidak boleh kosong!
+          </div>
+        }
+      </div>
+    }
+    @if(confirmPasswordRef.dirty || confirmPasswordRef.touched){
+      @if(confirmPassword != password){
+        <div class="text-danger small">
+          Konfirmasi password tidak sama!
+        </div>
+      }
+    }
+  </div>
+
+  <button class="btn btn-primary mt-3" type="button" (click) = "btnSimpan(f)">Register</button>
+</form>

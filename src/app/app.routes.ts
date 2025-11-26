@@ -4,6 +4,7 @@ import { Home } from './home/home';
 import { AppLayout } from './Layout/app-layout/app-layout';
 import { Login } from './auth/login/login';
 import { AuthLayout } from './Layout/auth-layout/auth-layout';
+import { Register } from './auth/register/register';
 export const routes: Routes = [
     {
         path : "",
@@ -24,8 +25,12 @@ export const routes: Routes = [
         component : AuthLayout,
         children : [
             {
-                path : "Login",
+                path : "auth/login",
                 component : Login,
+            },
+            {
+                path : "auth/register",
+                component : Register,
             }
         ]
     }
